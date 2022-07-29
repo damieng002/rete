@@ -8,6 +8,7 @@ export declare class IO {
     key: string;
     name: string;
     socket: Socket;
+    data: any;
     constructor(key: string, name: string, socket: Socket, multiConns: boolean);
     removeConnection(connection: Connection): void;
     removeConnections(): void;

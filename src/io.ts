@@ -11,6 +11,7 @@ export class IO {
     key: string;
     name: string;
     socket: Socket;
+    data: any;
 
     constructor(key: string, name: string, socket: Socket, multiConns: boolean) {
 	    this.node = null;

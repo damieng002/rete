@@ -23,13 +23,12 @@ export class SocketView extends Emitter<EventsTypes> {
     getPosition({ position }: { position: number[] }): [number, number] {
         const el = this.el;
 
-        let isOutput = false;
-
-        if (this.io.node) {
-            isOutput = Boolean(this.io.node.outputs.get(this.io.key))
-        }
-
         if (this.node.collapsed) {
+            let isOutput = false;
+
+            if (this.io.node) {
+                isOutput = 'output_type_id' in this.io.data
+            }
             // @ts-ignore
             const posY = document.getElementById(this.node.name.toLowerCase() + '-' + this.node.id).offsetHeight / 2
 
@@ -50,6 +49,5 @@ export class SocketView extends Emitter<EventsTypes> {
             position[0] + el.offsetLeft + el.offsetWidth / 2,
             position[1] + el.offsetTop + el.offsetHeight / 2
         ]
-
     }
 }

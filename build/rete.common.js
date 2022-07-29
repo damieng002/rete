@@ -629,6 +629,8 @@ function () {
 
     _defineProperty(this, "socket", void 0);
 
+    _defineProperty(this, "data", void 0);
+
     this.node = null;
     this.multipleConnections = multiConns;
     this.connections = [];
@@ -1276,14 +1278,15 @@ function (_Emitter) {
     value: function getPosition(_ref) {
       var position = _ref.position;
       var el = this.el;
-      var isOutput = false;
-
-      if (this.io.node) {
-        isOutput = Boolean(this.io.node.outputs.get(this.io.key));
-      }
 
       if (this.node.collapsed) {
-        // @ts-ignore
+        var isOutput = false;
+
+        if (this.io.node) {
+          isOutput = 'output_type_id' in this.io.data;
+        } // @ts-ignore
+
+
         var posY = document.getElementById(this.node.name.toLowerCase() + '-' + this.node.id).offsetHeight / 2;
 
         if (isOutput) {
