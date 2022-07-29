@@ -29,6 +29,7 @@ export interface NodeData {
         [key: string]: unknown;
     };
     position: [number, number];
+    collapsed: boolean;
 }
 export interface NodesData {
     [id: string]: NodeData;

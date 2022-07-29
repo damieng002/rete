@@ -12,8 +12,8 @@ export class Node {
     inputs = new Map<string, Input>();
     outputs = new Map<string, Output>();
     controls = new Map<string, Control>();
-    data: {[key: string]: unknown} = {};
-    meta: {[key: string]: unknown} = {};
+    data: { [key: string]: unknown } = {};
+    meta: { [key: string]: unknown } = {};
     collapsed: boolean
 
     static latestId = 0;
@@ -69,7 +69,7 @@ export class Node {
         this.outputs.delete(output.key);
     }
 
-    setMeta (meta: {[key: string]: unknown}) {
+    setMeta(meta: { [key: string]: unknown }) {
         this.meta = meta;
         return this;
     }
@@ -83,7 +83,8 @@ export class Node {
         return connections;
     }
 
-    update() {}
+    update() {
+    }
 
     static incrementId() {
         if (!this.latestId)
@@ -111,7 +112,8 @@ export class Node {
             'inputs': reduceIO<InputsData>(this.inputs),
             'outputs': reduceIO<OutputsData>(this.outputs),
             'position': this.position,
-            'name': this.name
+            'name': this.name,
+            'collapsed': this.collapsed
         }
     }
 
@@ -124,6 +126,7 @@ export class Node {
         node.position = [x, y];
         node.name = json.name;
         Node.latestId = Math.max(node.id, Node.latestId);
+        node.collapsed = json.collapsed;
 
         return node;
     }

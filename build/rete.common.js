@@ -362,7 +362,8 @@ function () {
         'inputs': reduceIO(this.inputs),
         'outputs': reduceIO(this.outputs),
         'position': this.position,
-        'name': this.name
+        'name': this.name,
+        'collapsed': this.collapsed
       };
     }
   }], [{
@@ -390,6 +391,7 @@ function () {
       node.position = [x, y];
       node.name = json.name;
       Node.latestId = Math.max(node.id, Node.latestId);
+      node.collapsed = json.collapsed;
       return node;
     }
   }]);
