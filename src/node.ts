@@ -14,11 +14,13 @@ export class Node {
     controls = new Map<string, Control>();
     data: {[key: string]: unknown} = {};
     meta: {[key: string]: unknown} = {};
+    collapsed: boolean
 
     static latestId = 0;
 
     constructor(name: string) {
         this.name = name;
+        this.collapsed = false;
         this.id = Node.incrementId();
     }
 
