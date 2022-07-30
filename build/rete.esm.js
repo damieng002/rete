@@ -1277,20 +1277,24 @@ function (_Emitter) {
 
       if (this.node.collapsed) {
         var isOutput = false;
+        var customHackedOffsetX = 50;
 
         if (this.io.node) {
           isOutput = 'output_type_id' in this.io.data;
         } // @ts-ignore
+        // the middle of the node component
 
 
         var posY = document.getElementById(this.node.name.toLowerCase() + '-' + this.node.id).offsetHeight / 2;
 
         if (isOutput) {
+          // @ts-ignore
+          var posXOutput = document.getElementById('details-' + this.node.id).offsetWidth - customHackedOffsetX;
           return [// @ts-ignore
-          position[0] + el.offsetLeft + document.getElementById('details-' + this.node.id).offsetWidth - 50, position[1] + posY];
+          position[0] + posXOutput, position[1] + posY];
         }
 
-        return [position[0] + el.offsetLeft + 50, // @ts-ignore
+        return [position[0] + customHackedOffsetX, // @ts-ignore
         position[1] + posY];
       }
 
