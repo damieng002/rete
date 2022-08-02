@@ -51,6 +51,48 @@ export class SocketView extends Emitter<EventsTypes> {
                 position[1] + posY
             ]
         }
+        if (this.node.inputsCollapsed) {
+            let isOutput = false;
+            const customHackedOffsetX = 50;
+            const customHackedOffsetY = -10;
+
+            if (this.io.node) {
+                isOutput = 'output_type_id' in this.io.data
+            }
+            if (!isOutput) {
+                // @ts-ignore
+                // the middle of the inputs
+                const posY = document.getElementById('node-inputs-' + this.node.id).offsetHeight + document.getElementById('node-summary-' + this.node.id).offsetHeight + customHackedOffsetY
+
+                return [
+                    position[0] + customHackedOffsetX,
+                    // @ts-ignore
+                    position[1] + posY
+                ]
+            }
+        }
+        if (this.node.outputsCollapsed) {
+            let isOutput = false;
+            const customHackedOffsetX = 47;
+            const customHackedOffsetY = 0;
+
+            if (this.io.node) {
+                isOutput = 'output_type_id' in this.io.data
+            }
+            if (isOutput) {
+                // @ts-ignore
+                // the middle of the outputs
+                const posY = document.getElementById('company-' + this.node.id).offsetHeight + customHackedOffsetY - document.getElementById('node-footer-' + this.node.id).offsetHeight -document.getElementById('node-outputs-' + this.node.id).offsetHeight/2
+                // @ts-ignore
+                const posXOutput = document.getElementById('details-' + this.node.id).offsetWidth - customHackedOffsetX
+
+                return [
+                    position[0] + posXOutput,
+                    // @ts-ignore
+                    position[1] + posY
+                ]
+            }
+        }
         return [
             position[0] + el.offsetLeft + el.offsetWidth / 2,
             position[1] + el.offsetTop + el.offsetHeight / 2

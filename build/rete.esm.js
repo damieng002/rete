@@ -1313,6 +1313,47 @@ function (_Emitter) {
         position[1] + posY];
       }
 
+      if (this.node.inputsCollapsed) {
+        var _isOutput = false;
+        var _customHackedOffsetX = 50;
+        var customHackedOffsetY = -10;
+
+        if (this.io.node) {
+          _isOutput = 'output_type_id' in this.io.data;
+        }
+
+        if (!_isOutput) {
+          // @ts-ignore
+          // the middle of the inputs
+          var _posY = document.getElementById('node-inputs-' + this.node.id).offsetHeight + document.getElementById('node-summary-' + this.node.id).offsetHeight + customHackedOffsetY;
+
+          return [position[0] + _customHackedOffsetX, // @ts-ignore
+          position[1] + _posY];
+        }
+      }
+
+      if (this.node.outputsCollapsed) {
+        var _isOutput2 = false;
+        var _customHackedOffsetX2 = 47;
+        var _customHackedOffsetY = 0;
+
+        if (this.io.node) {
+          _isOutput2 = 'output_type_id' in this.io.data;
+        }
+
+        if (_isOutput2) {
+          // @ts-ignore
+          // the middle of the outputs
+          var _posY2 = document.getElementById('company-' + this.node.id).offsetHeight + _customHackedOffsetY - document.getElementById('node-footer-' + this.node.id).offsetHeight - document.getElementById('node-outputs-' + this.node.id).offsetHeight / 2; // @ts-ignore
+
+
+          var _posXOutput = document.getElementById('details-' + this.node.id).offsetWidth - _customHackedOffsetX2;
+
+          return [position[0] + _posXOutput, // @ts-ignore
+          position[1] + _posY2];
+        }
+      }
+
       return [position[0] + el.offsetLeft + el.offsetWidth / 2, position[1] + el.offsetTop + el.offsetHeight / 2];
     }
   }]);
