@@ -18,7 +18,10 @@ export default {
             },
             'position': [80, 200],
             'name': 'Number',
-            'collapsed': false
+            'collapsed': false,
+            'inputsCollapsed': false,
+            'processedCollapsed': true,
+            'outputsCollapsed': false
         },
         '2': {
             'id': 2,
@@ -37,7 +40,10 @@ export default {
             },
             'position': [80, 400],
             'name': 'Number',
-            'collapsed': false
+            'collapsed': false,
+            'inputsCollapsed': false,
+            'processedCollapsed': true,
+            'outputsCollapsed': false
         },
         '3': {
             'id': 3,
@@ -65,7 +71,10 @@ export default {
             },
             'position': [500, 240],
             'name': 'Add',
-            'collapsed': false
+            'collapsed': false,
+            'inputsCollapsed': false,
+            'processedCollapsed': true,
+            'outputsCollapsed': false
         }
     }
 }

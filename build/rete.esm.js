@@ -266,8 +266,17 @@ function () {
 
     _defineProperty(this, "collapsed", void 0);
 
+    _defineProperty(this, "inputsCollapsed", void 0);
+
+    _defineProperty(this, "processedCollapsed", void 0);
+
+    _defineProperty(this, "outputsCollapsed", void 0);
+
     this.name = name;
     this.collapsed = false;
+    this.inputsCollapsed = false;
+    this.processedCollapsed = true;
+    this.outputsCollapsed = false;
     this.id = Node.incrementId();
   }
 
@@ -359,7 +368,10 @@ function () {
         'outputs': reduceIO(this.outputs),
         'position': this.position,
         'name': this.name,
-        'collapsed': this.collapsed
+        'collapsed': this.collapsed,
+        'inputsCollapsed': this.inputsCollapsed,
+        'processedCollapsed': this.processedCollapsed,
+        'outputsCollapsed': this.outputsCollapsed
       };
     }
   }], [{
@@ -388,6 +400,9 @@ function () {
       node.name = json.name;
       Node.latestId = Math.max(node.id, Node.latestId);
       node.collapsed = json.collapsed;
+      node.inputsCollapsed = json.inputsCollapsed;
+      node.processedCollapsed = json.processedCollapsed;
+      node.outputsCollapsed = json.outputsCollapsed;
       return node;
     }
   }]);

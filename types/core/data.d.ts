@@ -30,6 +30,9 @@ export interface NodeData {
     };
     position: [number, number];
     collapsed: boolean;
+    inputsCollapsed: boolean;
+    processedCollapsed: boolean;
+    outputsCollapsed: boolean;
 }
 export interface NodesData {
     [id: string]: NodeData;

@@ -14,13 +14,19 @@ export class Node {
     controls = new Map<string, Control>();
     data: { [key: string]: unknown } = {};
     meta: { [key: string]: unknown } = {};
-    collapsed: boolean
+    collapsed: boolean;
+    inputsCollapsed: boolean;
+    processedCollapsed: boolean;
+    outputsCollapsed: boolean;
 
     static latestId = 0;
 
     constructor(name: string) {
         this.name = name;
         this.collapsed = false;
+        this.inputsCollapsed = false;
+        this.processedCollapsed = true;
+        this.outputsCollapsed = false;
         this.id = Node.incrementId();
     }
 
@@ -113,7 +119,10 @@ export class Node {
             'outputs': reduceIO<OutputsData>(this.outputs),
             'position': this.position,
             'name': this.name,
-            'collapsed': this.collapsed
+            'collapsed': this.collapsed,
+            'inputsCollapsed': this.inputsCollapsed,
+            'processedCollapsed': this.processedCollapsed,
+            'outputsCollapsed': this.outputsCollapsed
         }
     }
 
@@ -127,6 +136,9 @@ export class Node {
         node.name = json.name;
         Node.latestId = Math.max(node.id, Node.latestId);
         node.collapsed = json.collapsed;
+        node.inputsCollapsed = json.inputsCollapsed;
+        node.processedCollapsed = json.processedCollapsed;
+        node.outputsCollapsed = json.outputsCollapsed;
 
         return node;
     }

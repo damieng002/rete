@@ -17,6 +17,9 @@ export declare class Node {
         [key: string]: unknown;
     };
     collapsed: boolean;
+    inputsCollapsed: boolean;
+    processedCollapsed: boolean;
+    outputsCollapsed: boolean;
     static latestId: number;
     constructor(name: string);
     _add<T extends any>(list: Map<string, T>, item: T, prop: string): void;
