@@ -1,5 +1,5 @@
 /*!
-* rete v1.4.9 
+* rete v1.5.0 
 * (c) 2023 Vitaliy Stoliarov 
 * Released under the MIT license.
 */
@@ -606,10 +606,10 @@ function () {
     key: "trigger",
     value: function trigger(name) {
       var params = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      if (!(name in this.events)) throw new Error("The event ".concat(name, " cannot be triggered"));
+      if (!(name in this.events)) throw new Error("The event ".concat(String(name), " cannot be triggered"));
       return this.events[name].reduce(function (r, e) {
         return e(params) !== false && r;
-      }, true); // return false if at least one event is false        
+      }, true); // return false if at least one event is false
     }
   }, {
     key: "bind",
@@ -1581,15 +1581,14 @@ function (_Emitter) {
     _this.on('nodetranslated', _this.updateConnections.bind(_assertThisInitialized(_this)));
 
     _this.on('rendersocket', function (_ref) {
-      var socket = _ref.socket;
+      var input = _ref.input,
+          output = _ref.output;
       var connections = Array.from(_this.connections.entries());
       var relatedConnections = connections.filter(function (_ref2) {
         var _ref3 = _slicedToArray(_ref2, 1),
             connection = _ref3[0];
 
-        var input = connection.input,
-            output = connection.output;
-        return [input.socket, output.socket].includes(socket);
+        return connection.input === input || connection.output === output;
       });
       relatedConnections.forEach(function (_ref4) {
         var _ref5 = _slicedToArray(_ref4, 2),

@@ -20,7 +20,7 @@ export declare class Engine extends Context<EventsTypes> {
     throwError(message: string, data?: unknown): Promise<string>;
     private processStart;
     private processDone;
-    abort(): Promise<{}>;
+    abort(): Promise<void>;
     private lock;
     unlock(node: EngineNode): void;
     private extractInputData;

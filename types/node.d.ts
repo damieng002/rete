@@ -23,7 +23,9 @@ export declare class Node {
     outputsCollapsed: boolean;
     static latestId: number;
     constructor(name: string);
-    _add<T extends any>(list: Map<string, T>, item: T, prop: string): void;
+    _add<T extends {
+        key: string;
+    } & Record<string, any>>(list: Map<string, T>, item: T, prop: string): void;
     addControl(control: Control): this;
     removeControl(control: Control): void;
     addInput(input: Input): this;
