@@ -28,6 +28,7 @@ export interface NodeData {
     data: {[key: string]: unknown};
     position: [number, number];
     collapsed: boolean;
+    descriptionCollapsed: boolean;
     inputsCollapsed: boolean;
     processedCollapsed: boolean;
     outputsCollapsed: boolean;

@@ -1,6 +1,6 @@
 /*!
 * rete v1.4.9 
-* (c) 2022 Vitaliy Stoliarov 
+* (c) 2023 Vitaliy Stoliarov 
 * Released under the MIT license.
 */
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
@@ -266,6 +266,8 @@ function () {
 
     _defineProperty(this, "collapsed", void 0);
 
+    _defineProperty(this, "descriptionCollapsed", void 0);
+
     _defineProperty(this, "inputsCollapsed", void 0);
 
     _defineProperty(this, "processedCollapsed", void 0);
@@ -274,6 +276,7 @@ function () {
 
     this.name = name;
     this.collapsed = false;
+    this.descriptionCollapsed = true;
     this.inputsCollapsed = false;
     this.processedCollapsed = true;
     this.outputsCollapsed = false;
@@ -369,6 +372,7 @@ function () {
         'position': this.position,
         'name': this.name,
         'collapsed': this.collapsed,
+        'descriptionCollapsed': this.descriptionCollapsed,
         'inputsCollapsed': this.inputsCollapsed,
         'processedCollapsed': this.processedCollapsed,
         'outputsCollapsed': this.outputsCollapsed
@@ -400,6 +404,7 @@ function () {
       node.name = json.name;
       Node.latestId = Math.max(node.id, Node.latestId);
       node.collapsed = json.collapsed;
+      node.descriptionCollapsed = json.descriptionCollapsed;
       node.inputsCollapsed = json.inputsCollapsed;
       node.processedCollapsed = json.processedCollapsed;
       node.outputsCollapsed = json.outputsCollapsed;
@@ -1295,7 +1300,7 @@ function (_Emitter) {
         var customHackedOffsetX = 50;
 
         if (this.io.node) {
-          isOutput = 'output_type_id' in this.io.data;
+          isOutput = this.io.socket.name === 'output';
         } // @ts-ignore
         // the middle of the node component
 
@@ -1319,7 +1324,7 @@ function (_Emitter) {
         var customHackedOffsetY = -10;
 
         if (this.io.node) {
-          _isOutput = 'output_type_id' in this.io.data;
+          _isOutput = this.io.socket.name === 'output';
         }
 
         if (!_isOutput) {
@@ -1338,7 +1343,7 @@ function (_Emitter) {
         var _customHackedOffsetY = 0;
 
         if (this.io.node) {
-          _isOutput2 = 'output_type_id' in this.io.data;
+          _isOutput2 = this.io.socket.name === 'output';
         }
 
         if (_isOutput2) {

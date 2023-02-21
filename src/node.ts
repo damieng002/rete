@@ -15,6 +15,8 @@ export class Node {
     data: { [key: string]: unknown } = {};
     meta: { [key: string]: unknown } = {};
     collapsed: boolean;
+
+    descriptionCollapsed: boolean;
     inputsCollapsed: boolean;
     processedCollapsed: boolean;
     outputsCollapsed: boolean;
@@ -24,6 +26,7 @@ export class Node {
     constructor(name: string) {
         this.name = name;
         this.collapsed = false;
+        this.descriptionCollapsed = true;
         this.inputsCollapsed = false;
         this.processedCollapsed = true;
         this.outputsCollapsed = false;
@@ -120,6 +123,7 @@ export class Node {
             'position': this.position,
             'name': this.name,
             'collapsed': this.collapsed,
+            'descriptionCollapsed':this.descriptionCollapsed,
             'inputsCollapsed': this.inputsCollapsed,
             'processedCollapsed': this.processedCollapsed,
             'outputsCollapsed': this.outputsCollapsed
@@ -136,6 +140,7 @@ export class Node {
         node.name = json.name;
         Node.latestId = Math.max(node.id, Node.latestId);
         node.collapsed = json.collapsed;
+        node.descriptionCollapsed = json.descriptionCollapsed;
         node.inputsCollapsed = json.inputsCollapsed;
         node.processedCollapsed = json.processedCollapsed;
         node.outputsCollapsed = json.outputsCollapsed;

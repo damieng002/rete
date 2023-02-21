@@ -19,6 +19,7 @@ export default {
             'position': [80, 200],
             'name': 'Number',
             'collapsed': false,
+            'descriptionCollapsed': true,
             'inputsCollapsed': false,
             'processedCollapsed': true,
             'outputsCollapsed': false
@@ -41,6 +42,7 @@ export default {
             'position': [80, 400],
             'name': 'Number',
             'collapsed': false,
+            'descriptionCollapsed': true,
             'inputsCollapsed': false,
             'processedCollapsed': true,
             'outputsCollapsed': false
@@ -72,6 +74,7 @@ export default {
             'position': [500, 240],
             'name': 'Add',
             'collapsed': false,
+            'descriptionCollapsed': true,
             'inputsCollapsed': false,
             'processedCollapsed': true,
             'outputsCollapsed': false

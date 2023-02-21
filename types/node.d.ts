@@ -17,6 +17,7 @@ export declare class Node {
         [key: string]: unknown;
     };
     collapsed: boolean;
+    descriptionCollapsed: boolean;
     inputsCollapsed: boolean;
     processedCollapsed: boolean;
     outputsCollapsed: boolean;

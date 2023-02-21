@@ -28,7 +28,7 @@ export class SocketView extends Emitter<EventsTypes> {
             const customHackedOffsetX = 50;
 
             if (this.io.node) {
-                isOutput = 'output_type_id' in this.io.data
+                isOutput = this.io.socket.name === 'output'
             }
             // @ts-ignore
             // the middle of the node component
@@ -57,7 +57,7 @@ export class SocketView extends Emitter<EventsTypes> {
             const customHackedOffsetY = -10;
 
             if (this.io.node) {
-                isOutput = 'output_type_id' in this.io.data
+                isOutput = this.io.socket.name === 'output'
             }
             if (!isOutput) {
                 // @ts-ignore
@@ -77,12 +77,12 @@ export class SocketView extends Emitter<EventsTypes> {
             const customHackedOffsetY = 0;
 
             if (this.io.node) {
-                isOutput = 'output_type_id' in this.io.data
+                isOutput = this.io.socket.name === 'output'
             }
             if (isOutput) {
                 // @ts-ignore
                 // the middle of the outputs
-                const posY = document.getElementById('company-' + this.node.id).offsetHeight + customHackedOffsetY - document.getElementById('node-footer-' + this.node.id).offsetHeight -document.getElementById('node-outputs-' + this.node.id).offsetHeight/2
+                const posY = document.getElementById('company-' + this.node.id).offsetHeight + customHackedOffsetY - document.getElementById('node-footer-' + this.node.id).offsetHeight - document.getElementById('node-outputs-' + this.node.id).offsetHeight / 2
                 // @ts-ignore
                 const posXOutput = document.getElementById('details-' + this.node.id).offsetWidth - customHackedOffsetX
 
