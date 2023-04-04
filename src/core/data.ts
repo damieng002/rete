@@ -1,3 +1,5 @@
+import { Candidate } from "../candidate";
+
 export interface ConnectionData {
     node: number;
     data: unknown;
@@ -28,6 +30,7 @@ export interface NodeData {
     data: {[key: string]: unknown};
     position: [number, number];
     collapsed: boolean;
+    candidates: Candidate[];
     descriptionCollapsed: boolean;
     inputsCollapsed: boolean;
     processedCollapsed: boolean;

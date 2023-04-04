@@ -3,6 +3,7 @@ import { Control } from './control';
 import { Input } from './input';
 import { Output } from './output';
 import { InputsData, NodeData, OutputsData } from './core/data';
+import { Candidate } from './candidate';
 
 export class Node {
 
@@ -15,7 +16,7 @@ export class Node {
     data: { [key: string]: unknown } = {};
     meta: { [key: string]: unknown } = {};
     collapsed: boolean;
-
+    candidates: Candidate[];
     descriptionCollapsed: boolean;
     inputsCollapsed: boolean;
     processedCollapsed: boolean;
@@ -30,6 +31,7 @@ export class Node {
         this.inputsCollapsed = false;
         this.processedCollapsed = true;
         this.outputsCollapsed = false;
+        this.candidates = [];
         this.id = Node.incrementId();
     }
 
@@ -123,6 +125,7 @@ export class Node {
             'position': this.position,
             'name': this.name,
             'collapsed': this.collapsed,
+            'candidates': this.candidates,
             'descriptionCollapsed':this.descriptionCollapsed,
             'inputsCollapsed': this.inputsCollapsed,
             'processedCollapsed': this.processedCollapsed,
@@ -140,6 +143,7 @@ export class Node {
         node.name = json.name;
         Node.latestId = Math.max(node.id, Node.latestId);
         node.collapsed = json.collapsed;
+        node.candidates = json.candidates;
         node.descriptionCollapsed = json.descriptionCollapsed;
         node.inputsCollapsed = json.inputsCollapsed;
         node.processedCollapsed = json.processedCollapsed;
