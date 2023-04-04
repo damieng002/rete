@@ -13,7 +13,7 @@ export declare class Engine extends Context<EventsTypes> {
     args: unknown[];
     data: Data | null;
     state: number;
-    forwarded: Set<any>;
+    forwarded: Set<unknown>;
     onAbort: () => void;
     constructor(id: string);
     clone(): Engine;

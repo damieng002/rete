@@ -3,6 +3,7 @@ import { Control } from './control';
 import { Input } from './input';
 import { Output } from './output';
 import { NodeData } from './core/data';
+import { Candidate } from './candidate';
 export declare class Node {
     name: string;
     id: number;
@@ -17,6 +18,7 @@ export declare class Node {
         [key: string]: unknown;
     };
     collapsed: boolean;
+    candidates: Candidate[];
     descriptionCollapsed: boolean;
     inputsCollapsed: boolean;
     processedCollapsed: boolean;

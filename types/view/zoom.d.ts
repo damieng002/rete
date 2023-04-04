@@ -10,7 +10,7 @@ export declare class Zoom {
     pointers: PointerEvent[];
     destroy: () => void;
     constructor(container: HTMLElement, el: HTMLElement, intensity: number, onzoom: Function);
-    readonly translating: boolean;
+    get translating(): boolean;
     wheel(e: WheelEvent): void;
     touches(): {
         cx: number;
