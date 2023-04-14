@@ -18,7 +18,7 @@ export declare class Node {
         [key: string]: unknown;
     };
     collapsed: boolean;
-    candidates: Candidate[];
+    candidates: Map<string, Candidate>;
     descriptionCollapsed: boolean;
     inputsCollapsed: boolean;
     processedCollapsed: boolean;
@@ -34,6 +34,8 @@ export declare class Node {
     removeInput(input: Input): void;
     addOutput(output: Output): this;
     removeOutput(output: Output): void;
+    addCandidate(candidate: Candidate): this;
+    removeCandidate(candidate: Candidate): void;
     setMeta(meta: {
         [key: string]: unknown;
     }): this;

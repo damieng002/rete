@@ -733,7 +733,7 @@ var Node = /*#__PURE__*/function () {
 
     _defineProperty(this, "collapsed", void 0);
 
-    _defineProperty(this, "candidates", void 0);
+    _defineProperty(this, "candidates", new Map());
 
     _defineProperty(this, "descriptionCollapsed", void 0);
 
@@ -749,7 +749,6 @@ var Node = /*#__PURE__*/function () {
     this.inputsCollapsed = false;
     this.processedCollapsed = true;
     this.outputsCollapsed = false;
-    this.candidates = [];
     this.id = Node.incrementId();
   }
 
@@ -803,6 +802,18 @@ var Node = /*#__PURE__*/function () {
       this.outputs["delete"](output.key);
     }
   }, {
+    key: "addCandidate",
+    value: function addCandidate(candidate) {
+      this._add(this.candidates, candidate, 'node');
+
+      return this;
+    }
+  }, {
+    key: "removeCandidate",
+    value: function removeCandidate(candidate) {
+      this.candidates["delete"](candidate.key);
+    }
+  }, {
     key: "setMeta",
     value: function setMeta(meta) {
       this.meta = meta;
@@ -842,7 +853,14 @@ var Node = /*#__PURE__*/function () {
         'position': this.position,
         'name': this.name,
         'collapsed': this.collapsed,
-        'candidates': this.candidates,
+        'candidates': Array.from(this.candidates).reduce(function (obj, _ref3) {
+          var _ref4 = _slicedToArray(_ref3, 2),
+              key = _ref4[0],
+              c = _ref4[1];
+
+          obj[key] = c.toJSON();
+          return obj;
+        }, {}),
         'descriptionCollapsed': this.descriptionCollapsed,
         'inputsCollapsed': this.inputsCollapsed,
         'processedCollapsed': this.processedCollapsed,
@@ -875,7 +893,6 @@ var Node = /*#__PURE__*/function () {
       node.name = json.name;
       Node.latestId = Math.max(node.id, Node.latestId);
       node.collapsed = json.collapsed;
-      node.candidates = json.candidates;
       node.descriptionCollapsed = json.descriptionCollapsed;
       node.inputsCollapsed = json.inputsCollapsed;
       node.processedCollapsed = json.processedCollapsed;
@@ -1755,21 +1772,29 @@ var SocketView = /*#__PURE__*/function (_Emitter) {
 
         if (this.io.node) {
           isOutput = this.io.socket.name === 'output';
-        } // @ts-ignore
-        // the middle of the node component
-
-
-        var posY = document.getElementById(this.node.name.toLowerCase() + '-' + this.node.id).offsetHeight / 2;
-
-        if (isOutput) {
-          // @ts-ignore
-          var posXOutput = document.getElementById('details-' + this.node.id).offsetWidth - customHackedOffsetX;
-          return [// @ts-ignore
-          position[0] + posXOutput, position[1] + posY];
         }
 
-        return [position[0] + customHackedOffsetX, // @ts-ignore
-        position[1] + posY];
+        var nodeNameId = document.getElementById(this.node.name.toLowerCase() + '-' + this.node.id);
+
+        if (!nodeNameId) {
+          throw Error("The node name id: nodename-".concat(this.node.id, " not found. Make sure to set the id in the HTML element"));
+        } // the middle of the node component
+
+
+        var posY = nodeNameId.offsetHeight / 2;
+
+        if (isOutput) {
+          var detailsElement = document.getElementById('details-' + this.node.id);
+
+          if (!detailsElement) {
+            throw Error("The details id: details-".concat(this.node.id, " not found. Make sure to set the id in the details HTML element"));
+          }
+
+          var posXOutput = detailsElement.offsetWidth - customHackedOffsetX;
+          return [position[0] + posXOutput, position[1] + posY];
+        }
+
+        return [position[0] + customHackedOffsetX, position[1] + posY];
       }
 
       if (this.node.inputsCollapsed) {
@@ -1782,12 +1807,21 @@ var SocketView = /*#__PURE__*/function (_Emitter) {
         }
 
         if (!_isOutput) {
-          // @ts-ignore
-          // the middle of the inputs
-          var _posY = document.getElementById('node-inputs-' + this.node.id).offsetHeight + document.getElementById('node-summary-' + this.node.id).offsetHeight + customHackedOffsetY;
+          var nodeInputs = document.getElementById('node-inputs-' + this.node.id);
+          var nodeSummary = document.getElementById('node-summary-' + this.node.id);
 
-          return [position[0] + _customHackedOffsetX, // @ts-ignore
-          position[1] + _posY];
+          if (!nodeInputs) {
+            throw Error("The node-inputs id: node-inputs-".concat(this.node.id, " not found. Make sure to set the id in the HTML element"));
+          }
+
+          if (!nodeSummary) {
+            throw Error("The node-summary id: node-summary-".concat(this.node.id, " not found. Make sure to set the id in the HTML element"));
+          } // the middle of the inputs
+
+
+          var _posY = nodeInputs.offsetHeight + nodeSummary.offsetHeight + customHackedOffsetY;
+
+          return [position[0] + _customHackedOffsetX, position[1] + _posY];
         }
       }
 
@@ -1801,15 +1835,33 @@ var SocketView = /*#__PURE__*/function (_Emitter) {
         }
 
         if (_isOutput2) {
-          // @ts-ignore
-          // the middle of the outputs
-          var _posY2 = document.getElementById('company-' + this.node.id).offsetHeight + _customHackedOffsetY - document.getElementById('node-footer-' + this.node.id).offsetHeight - document.getElementById('node-outputs-' + this.node.id).offsetHeight / 2; // @ts-ignore
+          var companyId = document.getElementById('company-' + this.node.id);
+          var nodeFooterId = document.getElementById('node-footer-' + this.node.id);
+          var nodeOutputsId = document.getElementById('node-outputs-' + this.node.id);
+          var detailsId = document.getElementById('details-' + this.node.id);
+
+          if (!companyId) {
+            throw Error("The company id: company-".concat(this.node.id, " not found. Make sure to set the id in the HTML element"));
+          }
+
+          if (!nodeFooterId) {
+            throw Error("The node-footer id: node-footer-".concat(this.node.id, " not found. Make sure to set the id in the HTML element"));
+          }
+
+          if (!nodeOutputsId) {
+            throw Error("The node-outputs id: node-outputs-".concat(this.node.id, " not found. Make sure to set the id in the HTML element"));
+          }
+
+          if (!detailsId) {
+            throw Error("The details id: details-".concat(this.node.id, " not found. Make sure to set the id in the HTML element"));
+          } // the middle of the outputs
 
 
-          var _posXOutput = document.getElementById('details-' + this.node.id).offsetWidth - _customHackedOffsetX2;
+          var _posY2 = companyId.offsetHeight + _customHackedOffsetY - nodeFooterId.offsetHeight - nodeOutputsId.offsetHeight / 2;
 
-          return [position[0] + _posXOutput, // @ts-ignore
-          position[1] + _posY2];
+          var _posXOutput = detailsId.offsetWidth - _customHackedOffsetX2;
+
+          return [position[0] + _posXOutput, position[1] + _posY2];
         }
       }
 
