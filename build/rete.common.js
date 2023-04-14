@@ -2650,6 +2650,38 @@ var Socket = /*#__PURE__*/function () {
   return Socket;
 }();
 
+var Candidate = /*#__PURE__*/function () {
+  function Candidate(key, idCandidate, name, similarity) {
+    _classCallCheck(this, Candidate);
+
+    _defineProperty(this, "key", void 0);
+
+    _defineProperty(this, "idCandidate", void 0);
+
+    _defineProperty(this, "name", void 0);
+
+    _defineProperty(this, "similarity", void 0);
+
+    this.key = key;
+    this.idCandidate = idCandidate;
+    this.name = name;
+    this.similarity = similarity;
+  }
+
+  _createClass(Candidate, [{
+    key: "toJSON",
+    value: function toJSON() {
+      return {
+        idCandidate: this.idCandidate,
+        name: this.name,
+        similarity: this.similarity
+      };
+    }
+  }]);
+
+  return Candidate;
+}();
+
 function intersect(array1, array2) {
   return array1.filter(function (value) {
     return -1 !== array2.indexOf(value);
@@ -3457,9 +3489,11 @@ var index = {
   Node: Node,
   NodeEditor: NodeEditor,
   Output: Output,
-  Socket: Socket
+  Socket: Socket,
+  Candidate: Candidate
 };
 
+exports.Candidate = Candidate;
 exports.Component = Component;
 exports.Connection = Connection;
 exports.Control = Control;

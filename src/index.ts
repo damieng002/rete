@@ -8,6 +8,7 @@ import { Node } from './node';
 import { NodeEditor } from './editor';
 import { Output } from './output';
 import { Socket } from './socket';
+import { Candidate } from './candidate';
 import { Engine, Recursion } from './engine/index';
 
 export { Engine, Recursion } from './engine/index';
@@ -21,6 +22,7 @@ export { Node } from './node';
 export { NodeEditor } from './editor';
 export { Output } from './output';
 export { Socket } from './socket';
+export { Candidate } from './candidate';
 
 export default {
     Engine,
@@ -34,5 +36,6 @@ export default {
     Node,
     NodeEditor,
     Output,
-    Socket
+    Socket,
+    Candidate
 }

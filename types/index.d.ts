@@ -8,6 +8,7 @@ import { Node } from './node';
 import { NodeEditor } from './editor';
 import { Output } from './output';
 import { Socket } from './socket';
+import { Candidate } from './candidate';
 import { Engine, Recursion } from './engine/index';
 export { Engine, Recursion } from './engine/index';
 export { Component } from './component';
@@ -20,6 +21,7 @@ export { Node } from './node';
 export { NodeEditor } from './editor';
 export { Output } from './output';
 export { Socket } from './socket';
+export { Candidate } from './candidate';
 declare const _default: {
     Engine: typeof Engine;
     Recursion: typeof Recursion;
@@ -33,5 +35,6 @@ declare const _default: {
     NodeEditor: typeof NodeEditor;
     Output: typeof Output;
     Socket: typeof Socket;
+    Candidate: typeof Candidate;
 };
 export default _default;
