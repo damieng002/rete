@@ -4,8 +4,10 @@ export class Candidate {
     idCandidate: number;
     name: string;
     similarity: number;
+    node: Node | null = null;
 
     constructor(key: string, idCandidate: number, name:string, similarity:number) {
+        this.node = null;
         this.key = key;
         this.idCandidate = idCandidate;
         this.name = name; 

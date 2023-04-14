@@ -3,6 +3,7 @@ export declare class Candidate {
     idCandidate: number;
     name: string;
     similarity: number;
+    node: Node | null;
     constructor(key: string, idCandidate: number, name: string, similarity: number);
     toJSON(): {
         idCandidate: number;

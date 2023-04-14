@@ -2662,6 +2662,9 @@ var Candidate = /*#__PURE__*/function () {
 
     _defineProperty(this, "similarity", void 0);
 
+    _defineProperty(this, "node", null);
+
+    this.node = null;
     this.key = key;
     this.idCandidate = idCandidate;
     this.name = name;
