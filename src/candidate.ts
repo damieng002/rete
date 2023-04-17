@@ -16,6 +16,7 @@ export class Candidate {
 
     toJSON(){
         return {
+            key: this.key,
             idCandidate: this.idCandidate,
             name: this.name,
             similarity: this.similarity

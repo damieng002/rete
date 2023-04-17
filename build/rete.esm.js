@@ -2680,6 +2680,7 @@ var Candidate = /*#__PURE__*/function () {
     key: "toJSON",
     value: function toJSON() {
       return {
+        key: this.key,
         idCandidate: this.idCandidate,
         name: this.name,
         similarity: this.similarity
