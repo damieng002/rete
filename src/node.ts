@@ -154,6 +154,13 @@ export class Node {
         node.name = json.name;
         Node.latestId = Math.max(node.id, Node.latestId);
         node.collapsed = json.collapsed;
+        const candidatesMap = new Map<string, Candidate>();
+        for (const key in json.candidates) {
+            if (json.candidates.hasOwnProperty(key)) {
+                candidatesMap.set(key, json.candidates[key]);
+            }
+        }
+        node.candidates = candidatesMap;
         node.descriptionCollapsed = json.descriptionCollapsed;
         node.inputsCollapsed = json.inputsCollapsed;
         node.processedCollapsed = json.processedCollapsed;

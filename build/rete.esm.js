@@ -889,6 +889,15 @@ var Node = /*#__PURE__*/function () {
       node.name = json.name;
       Node.latestId = Math.max(node.id, Node.latestId);
       node.collapsed = json.collapsed;
+      var candidatesMap = new Map();
+
+      for (var _key in json.candidates) {
+        if (json.candidates.hasOwnProperty(_key)) {
+          candidatesMap.set(_key, json.candidates[_key]);
+        }
+      }
+
+      node.candidates = candidatesMap;
       node.descriptionCollapsed = json.descriptionCollapsed;
       node.inputsCollapsed = json.inputsCollapsed;
       node.processedCollapsed = json.processedCollapsed;
