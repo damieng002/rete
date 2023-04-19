@@ -21,7 +21,6 @@ export interface OutputData {
 
 export interface InputsData { [key: string]: InputData }
 export interface OutputsData { [key: string]: OutputData }
-export interface CandidatesData { [key: string]: Candidate }
 
 export interface NodeData {
     id: number;
@@ -31,7 +30,7 @@ export interface NodeData {
     data: {[key: string]: unknown};
     position: [number, number];
     collapsed: boolean;
-    candidates: CandidatesData;
+    candidates: Candidate[];
     descriptionCollapsed: boolean;
     inputsCollapsed: boolean;
     processedCollapsed: boolean;

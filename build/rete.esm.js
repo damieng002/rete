@@ -849,14 +849,13 @@ var Node = /*#__PURE__*/function () {
         'position': this.position,
         'name': this.name,
         'collapsed': this.collapsed,
-        'candidates': Array.from(this.candidates).reduce(function (obj, _ref3) {
-          var _ref4 = _slicedToArray(_ref3, 2),
-              key = _ref4[0],
-              c = _ref4[1];
+        'candidates': Array.from(this.candidates).map(function (_ref3) {
+          var _ref4 = _slicedToArray(_ref3, 2);
+              _ref4[0];
+              var val = _ref4[1];
 
-          obj[key] = c.toJSON();
-          return obj;
-        }, {}),
+          return val;
+        }),
         'descriptionCollapsed': this.descriptionCollapsed,
         'inputsCollapsed': this.inputsCollapsed,
         'processedCollapsed': this.processedCollapsed,

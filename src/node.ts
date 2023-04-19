@@ -133,10 +133,7 @@ export class Node {
             'position': this.position,
             'name': this.name,
             'collapsed': this.collapsed,
-            'candidates': Array.from(this.candidates).reduce((obj, [key, c]) => {
-                (obj as Record<string, any>)[key] = c.toJSON();
-                return obj;
-            }, {} as any),
+            'candidates': Array.from(this.candidates).map(([_,val])=>val),
             'descriptionCollapsed':this.descriptionCollapsed,
             'inputsCollapsed': this.inputsCollapsed,
             'processedCollapsed': this.processedCollapsed,
